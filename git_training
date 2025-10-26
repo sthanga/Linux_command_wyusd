@@ -1,0 +1,1160 @@
+# git training details
+Welcome to OpenDev Etherpad!
+
+This pad text is synchronized as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly on documents!
+
+OpenDev: https://opendev.org
+Etherpad on Github: https://github.com/ether/etherpad-lite
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo
+$ git --version
+git version 2.37.2.windows.2
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo
+$ git init
+Initialized empty Git repository in D:/14102025demo/.git/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (master)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ touch a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ nano a
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat a
+hi
+all
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=openssl
+http.sslcainfo=C:/Users/40045555/AppData/Local/Programs/Git/mingw64/ssl/certs/ca-bundle.crt
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+pull.rebase=false
+credential.helper=manager-core
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=master
+credential.helper=wincred
+user.name=ankur
+user.email=ankur.upadhyay@ltts.com
+credential.https://geagit.ltts.com.provider=generic
+safe.directory=D:/New folder
+alias.graph=log --oneline --graph --all --decorate
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim
+
+[1]+  Stopped                 vim
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+a  b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ pwd
+/d/14102025demo
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+ok
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat a
+hi
+all
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .swp
+        a
+        b
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git add a
+warning: in the working copy of 'a', LF will be replaced by CRLF the next time Git touches it
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   a
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .swp
+        b
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit -m "1"
+[main (root-commit) 2142dfa] 1
+ 1 file changed, 3 insertions(+)
+ create mode 100644 a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git remote add origin https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git remote -vv
+origin  https://geagit.ltts.com/Ankur.Upadhyay/demo.git (fetch)
+origin  https://geagit.ltts.com/Ankur.Upadhyay/demo.git (push)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git remote show origin
+* remote origin
+  Fetch URL: https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+  Push  URL: https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+  HEAD branch: main
+  Remote branch:
+    main new (next fetch will store in remotes/origin)
+  Local ref configured for 'git push':
+    main pushes to main (local out of date)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git push -u origin main
+To https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://geagit.ltts.com/Ankur.Upadhyay/demo.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git pull --rebase origin main
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 2.78 KiB | 203.00 KiB/s, done.
+From https://geagit.ltts.com/Ankur.Upadhyay/demo
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+Successfully rebased and updated refs/heads/main.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .swp
+        b
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git push -u origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 273 bytes | 273.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+   94aa320..097d0bb  main -> main
+branch 'main' set up to track 'origin/main'.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log
+commit 097d0bbe54150f931a1155670c4fe4f7017d2eed (HEAD -> main, origin/main)
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Tue Oct 14 16:01:28 2025 +0530
+
+    1
+
+commit 94aa320ec924383e864ff6513ae81c35e0c5de9a
+Author: Ankur Ramakant Upadhyay <ankur.upadhyay@ltts.com>
+Date:   Tue Oct 14 10:36:18 2025 +0000
+
+    Initial commit
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log --oneline
+097d0bb (HEAD -> main, origin/main) 1
+94aa320 Initial commit
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git branch
+* main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git branch -a
+* main
+  remotes/origin/main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status -sb
+## main...origin/main
+?? .swp
+?? b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit --oneline
+error: unknown option `oneline'
+usage: git commit [<options>] [--] <pathspec>...
+
+    -q, --quiet           suppress summary after successful commit
+    -v, --verbose         show diff in commit message template
+
+Commit message options
+    -F, --file <file>     read message from file
+    --author <author>     override author for commit
+    --date <date>         override date for commit
+    -m, --message <message>
+                          commit message
+    -c, --reedit-message <commit>
+                          reuse and edit message from specified commit
+    -C, --reuse-message <commit>
+                          reuse message from specified commit
+    --fixup [(amend|reword):]commit
+                          use autosquash formatted message to fixup or amend/reword specified commit
+    --squash <commit>     use autosquash formatted message to squash specified commit
+    --reset-author        the commit is authored by me now (used with -C/-c/--amend)
+    --trailer <trailer>   add custom trailer(s)
+    -s, --signoff         add a Signed-off-by trailer
+    -t, --template <file>
+                          use specified template file
+    -e, --edit            force edit of commit
+    --cleanup <mode>      how to strip spaces and #comments from message
+    --status              include status in commit message template
+    -S, --gpg-sign[=<key-id>]
+                          GPG sign commit
+
+Commit contents options
+    -a, --all             commit all changed files
+    -i, --include         add specified files to index for commit
+    --interactive         interactively add files
+    -p, --patch           interactively add changes
+    -o, --only            commit only specified files
+    -n, --no-verify       bypass pre-commit and commit-msg hooks
+    --dry-run             show what would be committed
+    --short               show status concisely
+    --branch              show branch information
+    --ahead-behind        compute full ahead/behind values
+    --porcelain           machine-readable output
+    --long                show status in long format (default)
+    -z, --null            terminate entries with NUL
+    --amend               amend previous commit
+    --no-post-rewrite     bypass post-rewrite hook
+    -u, --untracked-files[=<mode>]
+                          show untracked files, optional modes: all, normal, no. (Default: all)
+    --pathspec-from-file <file>
+                          read pathspec from file
+    --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log --oneline
+097d0bb (HEAD -> main, origin/main) 1
+94aa320 Initial commit
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git tag tag1 097d0bb
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log --oneline
+097d0bb (HEAD -> main, tag: tag1, origin/main) 1
+94aa320 Initial commit
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git push origin tag1
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+ * [new tag]         tag1 -> tag1
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$
+
+
+
+****************************************************************************************day-2******************************************************************************
+
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .swp
+        b
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim c
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ mkdir ign
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cd ign
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo/ign (main)
+$ vim d
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo/ign (main)
+$ vim e
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo/ign (main)
+$ ls
+d  e
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo/ign (main)
+$ cd ..
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c  ign/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim .gitignore
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c  ign/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git add .
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'b', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'ign/d', LF will be replaced by CRLF the next time Git touches it
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git sttaus
+git: 'sttaus' is not a git command. See 'git --help'.
+
+The most similar command is
+        status
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .gitignore
+        new file:   .swp
+        new file:   b
+        new file:   ign/d
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit -m"introduce the gitignore"
+[main da7d744] introduce the gitignore
+ 4 files changed, 6 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .swp
+ create mode 100644 b
+ create mode 100644 ign/d
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git push
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (7/7), 636 bytes | 636.00 KiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+   097d0bb..da7d744  main -> main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git branch
+* main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git branch -r
+  origin/main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git branch -a
+* main
+  remotes/origin/main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git checkout -b dev1
+Switched to a new branch 'dev1'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ ls
+README.md  a  b  c  ign/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ git add .
+warning: in the working copy of 'b', LF will be replaced by CRLF the next time Git touches it
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ git commit -m "b 345 updated"
+[dev1 35f56a4] b 345 updated
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ cat b
+hi
+3
+4
+5
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c  ign/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+ok
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git merge dev1
+Updating da7d744..35f56a4
+Fast-forward
+ b | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c  ign/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+3
+4
+5
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git switch dev1
+Switched to branch 'dev1'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ git add .
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ git commit -m"check1"
+[dev1 4e343ab] check1
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ git switch main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git add .
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit -m" check1"
+[main 39129e4]  check1
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git merge dev1
+Auto-merging b
+CONFLICT (content): Merge conflict in b
+Automatic merge failed; fix conflicts and then commit the result.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ git abort merge
+git: 'abort' is not a git command. See 'git --help'.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ git merge --abort
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+abcdefgh
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+abcdefgh
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git switch dev1
+Switched to branch 'dev1'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ cat b
+hi
+12345
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (dev1)
+$ git switch main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git merge dev1
+Auto-merging b
+CONFLICT (content): Merge conflict in b
+Automatic merge failed; fix conflicts and then commit the result.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ cat b
+hi
+abcdefgh
+12345
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   b
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ git add .
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+        modified:   b
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main|MERGING)
+$ git commit -m"done merge"
+[main 7677d78] done merge
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+abcdefgh
+12345
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log --oneline
+7677d78 (HEAD -> main) done merge
+39129e4  check1
+4e343ab (dev1) check1
+35f56a4 b 345 updated
+da7d744 (origin/main) introduce the gitignore
+097d0bb (tag: tag1) 1
+94aa320 Initial commit
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git show 097d0bb
+commit 097d0bbe54150f931a1155670c4fe4f7017d2eed (tag: tag1)
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Tue Oct 14 16:01:28 2025 +0530
+
+    1
+
+diff --git a/a b/a
+new file mode 100644
+index 0000000..af7d35f
+--- /dev/null
++++ b/a
+@@ -0,0 +1,3 @@
++hi
++all
++
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git show tag1
+commit 097d0bbe54150f931a1155670c4fe4f7017d2eed (tag: tag1)
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Tue Oct 14 16:01:28 2025 +0530
+
+    1
+
+diff --git a/a b/a
+new file mode 100644
+index 0000000..af7d35f
+--- /dev/null
++++ b/a
+@@ -0,0 +1,3 @@
++hi
++all
++
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git show-ref --tags
+097d0bbe54150f931a1155670c4fe4f7017d2eed refs/tags/tag1
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git show dev1
+commit 4e343abc93e9f7fade2ecc1a2e42545654f97017 (dev1)
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Wed Oct 15 15:37:06 2025 +0530
+
+    check1
+
+diff --git a/b b/b
+index 1aab73e..f8ff6af 100644
+--- a/b
++++ b/b
+@@ -1,4 +1,2 @@
+ hi
+-3
+-4
+-5
++12345
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log dev1
+commit 4e343abc93e9f7fade2ecc1a2e42545654f97017 (dev1)
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Wed Oct 15 15:37:06 2025 +0530
+
+    check1
+
+commit 35f56a4aa01af3ced1a77b76b9241fb282b73937
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Wed Oct 15 15:30:13 2025 +0530
+
+    b 345 updated
+
+commit da7d744ccd4fc8d1a1772df10d321cd2df2ecfbf (origin/main)
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Wed Oct 15 15:16:54 2025 +0530
+
+    introduce the gitignore
+
+commit 097d0bbe54150f931a1155670c4fe4f7017d2eed (tag: tag1)
+Author: ankur <ankur.upadhyay@ltts.com>
+Date:   Tue Oct 14 16:01:28 2025 +0530
+
+    1
+
+commit 94aa320ec924383e864ff6513ae81c35e0c5de9a
+Author: Ankur Ramakant Upadhyay <ankur.upadhyay@ltts.com>
+Date:   Tue Oct 14 10:36:18 2025 +0000
+
+    Initial commit
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log --oneline
+7677d78 (HEAD -> main) done merge
+39129e4  check1
+4e343ab (dev1) check1
+35f56a4 b 345 updated
+da7d744 (origin/main) introduce the gitignore
+097d0bb (tag: tag1) 1
+94aa320 Initial commit
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git show 35f56a4:b
+hi
+3
+4
+5
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git show 4e343ab:b
+hi
+12345
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c  ign/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat a
+hi
+all
+critical data
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+abcdefgh
+12345
+temp phase exp
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   a
+        modified:   b
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git add .
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit -m"workphase1"
+[main e8c4c77] workphase1
+ 2 files changed, 2 insertions(+)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   b
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git stash
+Saved working directory and index state WIP on main: e8c4c77 workphase1
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git reflog
+e8c4c77 (HEAD -> main) HEAD@{0}: reset: moving to HEAD
+e8c4c77 (HEAD -> main) HEAD@{1}: commit: workphase1
+7677d78 HEAD@{2}: commit (merge): done merge
+39129e4 HEAD@{3}: checkout: moving from dev1 to main
+4e343ab (dev1) HEAD@{4}: checkout: moving from main to dev1
+39129e4 HEAD@{5}: reset: moving to HEAD
+39129e4 HEAD@{6}: commit: check1
+35f56a4 HEAD@{7}: checkout: moving from dev1 to main
+4e343ab (dev1) HEAD@{8}: commit: check1
+35f56a4 HEAD@{9}: checkout: moving from main to dev1
+35f56a4 HEAD@{10}: merge dev1: Fast-forward
+da7d744 (origin/main) HEAD@{11}: checkout: moving from dev1 to main
+35f56a4 HEAD@{12}: commit: b 345 updated
+da7d744 (origin/main) HEAD@{13}: checkout: moving from main to dev1
+da7d744 (origin/main) HEAD@{14}: commit: introduce the gitignore
+097d0bb (tag: tag1) HEAD@{15}: pull --rebase origin main (finish): returning to refs/heads/main
+097d0bb (tag: tag1) HEAD@{16}: pull --rebase origin main (pick): 1
+94aa320 HEAD@{17}: pull --rebase origin main (start): checkout 94aa320ec924383e864ff6513ae81c35e0c5de9a
+2142dfa HEAD@{18}: commit (initial): 1
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git add .
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit -m"a done b working"
+On branch main
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ vim a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git add .
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit -m"a done b working phase"
+[main c3890fd] a done b working phase
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git stash list
+stash@{0}: WIP on main: e8c4c77 workphase1
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+abcdefgh
+12345
+temp phase exp
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 6 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git stash apply stash@{0}
+On branch main
+Your branch is ahead of 'origin/main' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   b
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git add .
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   b
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git commit -m"b is ok"
+[main a5dbdd5] b is ok
+ 1 file changed, 1 insertion(+)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat b
+hi
+abcdefgh
+12345
+temp phase exp
+135 odd
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git push
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (22/22), 1.92 KiB | 654.00 KiB/s, done.
+Total 22 (delta 7), reused 0 (delta 0), pack-reused 0
+To https://geagit.ltts.com/Ankur.Upadhyay/demo.git
+   da7d744..a5dbdd5  main -> main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git fetch origin
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 258 bytes | 28.00 KiB/s, done.
+From https://geagit.ltts.com/Ankur.Upadhyay/demo
+   a5dbdd5..97884f3  main       -> origin/main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c  ign/
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git log HEAD..origin/main
+commit 97884f384370674933cc9e96a8ca615ab86183af (origin/main)
+Author: Ankur Ramakant Upadhyay <ankur.upadhyay@ltts.com>
+Date:   Wed Oct 15 10:56:15 2025 +0000
+
+    new change
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git diff HEAD..origin/main
+diff --git a/new b/new
+new file mode 100644
+index 0000000..3e5126c
+--- /dev/null
++++ b/new
+@@ -0,0 +1 @@
++new
+\ No newline at end of file
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git fetch --verbose
+POST git-upload-pack (165 bytes)
+From https://geagit.ltts.com/Ankur.Upadhyay/demo
+ = [up to date]      main       -> origin/main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git merge
+Updating a5dbdd5..97884f3
+Fast-forward
+ new | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 new
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ ls
+README.md  a  b  c  ign/  new
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$ cat new
+new
+40045555@BRTSL03362 MINGW64 /d/14102025demo (main)
+$
+
+
+************************************************************************************Day-3******************************************************************************************************
+
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (main)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (main)
+$ vim a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (main)
+$ git add .
+warning: in the working copy of 'a', LF will be replaced by CRLF the next time Git touches it
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (main)
+$ git commit -m "1:main"
+[main (root-commit) bb7c7f3] 1:main
+ 1 file changed, 1 insertion(+)
+ create mode 100644 a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (main)
+$ git checkout -b dev
+Switched to a new branch 'dev'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ vim a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ vim b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git switch main
+Switched to branch 'main'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (main)
+$ git checkout -b prod
+Switched to a new branch 'prod'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ ls
+'a  b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ ls
+a  b
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ vim c
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ ls
+a  b  c
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git add ,
+fatal: pathspec ',' did not match any files
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git add .
+warning: in the working copy of 'b', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'c', LF will be replaced by CRLF the next time Git touches it
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git commit -m "C"
+[prod de4c682] C
+ 2 files changed, 2 insertions(+)
+ create mode 100644 b
+ create mode 100644 c
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git log --oneline
+de4c682 (HEAD -> prod) C
+bb7c7f3 (main, dev) 1:main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ vim c
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git add .
+warning: in the working copy of 'c', LF will be replaced by CRLF the next time Git touches it
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git commit -m "D"
+[prod a6cd5cf] D
+ 1 file changed, 1 insertion(+)
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git log --oneline
+a6cd5cf (HEAD -> prod) D
+de4c682 C
+bb7c7f3 (main, dev) 1:main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git switch dev
+Switched to branch 'dev'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git log --oneline
+bb7c7f3 (HEAD -> dev, main) 1:main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ ls
+a
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ vim e
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git add .
+warning: in the working copy of 'e', LF will be replaced by CRLF the next time Git touches it
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git commit -m"B"
+[dev be04c81] B
+ 1 file changed, 1 insertion(+)
+ create mode 100644 e
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ GIT LOG --ONELINE
+fatal: cannot handle LOG as a builtin
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git log --oneline
+be04c81 (HEAD -> dev) B
+bb7c7f3 (main) 1:main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git log prod --oneline
+a6cd5cf (prod) D
+de4c682 C
+bb7c7f3 (main) 1:main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ ^C
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git rebase prod
+Successfully rebased and updated refs/heads/dev.
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git log --oneline
+1bd544f (HEAD -> dev) B
+a6cd5cf (prod) D
+de4c682 C
+bb7c7f3 (main) 1:main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (dev)
+$ git switch prod
+Switched to branch 'prod'
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git merge dev
+Updating a6cd5cf..1bd544f
+Fast-forward
+ e | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 e
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ ls
+a  b  c  e
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ git log --oneline
+1bd544f (HEAD -> prod, dev) B
+a6cd5cf D
+de4c682 C
+bb7c7f3 (main) 1:main
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$ tig
+
+40045555@BRTSL03362 MINGW64 /d/14102025demopart2 (prod)
+$
+
